@@ -1,0 +1,43 @@
+/* Стили для компонента ошибки */
+
+.error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.icon {
+  font-size: 48px;
+  margin-bottom: 16px;
+}
+
+.message {
+  font-size: 18px;
+  color: var(--brown800);
+  margin: 0 0 24px;
+  max-width: 400px;
+}
+
+.retryBtn {
+  background-color: var(--primary);
+  color: var(--white);
+  border: none;
+  padding: 12px 32px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s;
+}
+
+.retryBtn:hover {
+  background-color: #b51d00;
+  transform: translateY(-1px);
+}
+
+.retryBtn:active {
+  transform: scale(0.98);
+}

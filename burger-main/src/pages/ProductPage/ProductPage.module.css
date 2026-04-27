@@ -1,0 +1,255 @@
+/* Стили для страницы товара */
+
+.productPage {
+  min-height: 100vh;
+  background-color: var(--brown400);
+  padding: 24px 0;
+}
+
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 30px;
+}
+
+@media (max-width: 1200px) {
+  .container {
+    padding: 0 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 16px;
+  }
+}
+
+/* Хлебные крошки */
+.breadcrumbs {
+  font-size: 14px;
+  color: var(--brown700);
+  margin-bottom: 24px;
+}
+
+.breadcrumbs a {
+  color: var(--brown800);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.breadcrumbs a:hover {
+  color: var(--primary);
+}
+
+/* Информация о товаре */
+.productInfo {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  background-color: var(--white);
+  border-radius: 16px;
+  padding: 32px;
+  margin-bottom: 32px;
+}
+
+@media (max-width: 768px) {
+  .productInfo {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    padding: 24px;
+  }
+}
+
+/* Изображение */
+.imageSection {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.image {
+  width: 100%;
+  max-width: 400px;
+  aspect-ratio: 1 / 1;
+  background-color: var(--brown300);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.productImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.imagePlaceholder {
+  font-size: 18px;
+  color: var(--brown700);
+}
+
+/* Детали */
+.details {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.badge {
+  display: inline-block;
+  background-color: var(--additional-1);
+  color: var(--white);
+  padding: 4px 16px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  width: fit-content;
+}
+
+.productName {
+  font-size: 32px;
+  font-weight: 900;
+  color: var(--brown900);
+  margin: 0 0 16px;
+  line-height: 1.2;
+}
+
+@media (max-width: 768px) {
+  .productName {
+    font-size: 24px;
+  }
+}
+
+.description {
+  font-size: 16px;
+  color: var(--brown800);
+  line-height: 1.6;
+  margin: 0 0 24px;
+}
+
+.price {
+  font-size: 36px;
+  font-weight: 900;
+  color: var(--primary);
+  margin-bottom: 24px;
+}
+
+@media (max-width: 768px) {
+  .price {
+    font-size: 28px;
+  }
+}
+
+.addToCartBtn {
+  background-color: var(--additional-1);
+  color: var(--white);
+  border: none;
+  padding: 16px 32px;
+  border-radius: 10px;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s;
+}
+
+.addToCartBtn:hover {
+  background-color: #e67525;
+  transform: translateY(-2px);
+}
+
+.addToCartBtn:active {
+  transform: scale(0.98);
+}
+
+/* Пищевая ценность */
+.nutrition {
+  background-color: var(--white);
+  border-radius: 16px;
+  padding: 32px;
+  margin-bottom: 32px;
+}
+
+.sectionTitle {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--brown900);
+  margin: 0 0 24px;
+}
+
+.nutritionGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+@media (max-width: 768px) {
+  .nutritionGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+}
+
+.nutritionItem {
+  text-align: center;
+  padding: 20px;
+  background-color: var(--brown300);
+  border-radius: 12px;
+}
+
+.nutritionValue {
+  font-size: 28px;
+  font-weight: 900;
+  color: var(--brown900);
+  margin-bottom: 4px;
+}
+
+.nutritionLabel {
+  font-size: 14px;
+  color: var(--brown700);
+}
+
+/* Кнопка назад */
+.backSection {
+  text-align: center;
+}
+
+.backBtn {
+  display: inline-block;
+  padding: 12px 32px;
+  background-color: var(--brown300);
+  color: var(--brown900);
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: background-color 0.2s;
+}
+
+.backBtn:hover {
+  background-color: var(--brown500);
+}
+
+/* Не найдено */
+.notFound {
+  text-align: center;
+  padding: 80px 20px;
+}
+
+.notFound h2 {
+  font-size: 24px;
+  color: var(--brown800);
+  margin-bottom: 16px;
+}
+
+.backLink {
+  display: inline-block;
+  padding: 12px 24px;
+  background-color: var(--primary);
+  color: var(--white);
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 600;
+}

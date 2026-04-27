@@ -1,0 +1,34 @@
+/* Глобальные стили для всего приложения */
+/* Обновлённые стили под BK Russia */
+
+/* Основной контейнер */
+.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: var(--brown400);
+  color: var(--brown900);
+}
+
+/* Убираем горизонтальный скролл */
+body {
+  overflow-x: hidden;
+}
+
+/* Скролл */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Утилиты */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

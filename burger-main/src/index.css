@@ -1,0 +1,106 @@
+/* ===== CSS ПЕРЕМЕННЫЕ (цвета BK Russia) ===== */
+:root {
+  --primary: #d72300;          /* красный */
+  --secondary: #198737;         /* зелёный */
+  --additional-1: #f58538;      /* оранжевый */
+  --additional-2: #fa0;         /* жёлтый */
+  --brown900: #502314;          /* тёмно-коричневый (текст) */
+  --brown800: #845f50;
+  --brown700: #bba391;
+  --brown600: #d7c7b4;
+  --brown500: #e6d9c8;
+  --brown400: #f5ebdc;          /* бежевый фон */
+  --brown300: #fcf6ec;          /* светлый бежевый */
+  --white: #fff;
+  --error: #ff3b30;
+  --success: #22b447;
+
+  --max-width: 1200px;
+  --header-height: 80px;
+}
+
+/* ===== Сброс и базовые стили ===== */
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Rotonda', 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  background-color: var(--brown400);
+  color: var(--brown900);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@media (max-width: 768px) {
+  body {
+    font-size: 14px;
+    line-height: 20px;
+  }
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ===== Скроллбар как у BK ===== */
+::-webkit-scrollbar {
+  width: 11px;
+  height: 24px;
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--brown600);
+  border: 2px solid var(--brown400);
+  border-radius: 100px;
+}
+
+html {
+  scroll-padding: 80px;
+}
+
+@media (max-width: 768px) {
+  html {
+    scroll-padding: 180px;
+  }
+}
+
+/* ===== Ссылки ===== */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+/* ===== Контейнер ===== */
+.bk-app-content {
+  margin: 0 auto;
+  max-width: var(--max-width);
+  padding: 0 30px;
+  width: 100%;
+}
+
+@media (max-width: 1200px) {
+  .bk-app-content {
+    padding: 0 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  .bk-app-content {
+    padding: 0 16px;
+  }
+}
