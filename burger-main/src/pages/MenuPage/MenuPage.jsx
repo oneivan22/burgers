@@ -1,12 +1,11 @@
 // Страница каталога — один длинный список
 // Клик на категорию или подкатегорию — прокручивает к нужной секции
 
-import { useState, useEffect, useRef, useMemo } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useState, useEffect, useRef } from 'react';
 import ProductCard from '../../components/ProductCard/ProductCard';
 import Loader from '../../components/Loader/Loader';
 import ErrorMessage from '../../components/Error/ErrorMessage';
-import { fetchProducts } from '../../services/api';
+import { useMenuData } from '../../hooks/useMenuData';
 import { categories, subCategories } from '../../data/products';
 import styles from './MenuPage.module.css';
 
@@ -20,52 +19,25 @@ const categoryIcons = {
 };
 
 function MenuPage() {
-  // Состояния для данных
-  const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  // Используем кастомный хук для данных
+  const {
+    products,
+    loading,
+    error,
+    queryCategory,
+    searchQuery,
+    loadProducts,
+    getProductsByCategory,
+    getProductsBySub,
+    hasProducts,
+  } = useMenuData();
 
   // Состояние для текущей видимой категории
   const [visibleCategory, setVisibleCategory] = useState('');
 
-  // Ref-ы для секций категорий и подкатегорий
+  // Ref-ы для секций
   const categoryRefs = useRef({});
   const subRefs = useRef({});
-
-  // Параметры запроса из URL
-  const location = useLocation();
-  const searchParams = new URLSearchParams(location.search);
-  const queryCategory = searchParams.get('category') || '';
-  const searchQuery = searchParams.get('search') || '';
-
-  const filteredProducts = useMemo(() => {
-    let items = [...products];
-
-    if (searchQuery) {
-      const query = searchQuery.toLowerCase();
-      items = items.filter(product =>
-        product.name.toLowerCase().includes(query) ||
-        product.description.toLowerCase().includes(query)
-      );
-    }
-
-    return items;
-  }, [products, searchQuery]);
-
-  function getProductsByCategory(categoryId) {
-    return filteredProducts.filter(product => product.category === categoryId);
-  }
-
-  function getProductsBySub(subId) {
-    return filteredProducts.filter(product => product.subcategory === subId);
-  }
-
-  const hasProducts = filteredProducts.length > 0;
-
-  // Загружаем товары при монтировании
-  useEffect(() => {
-    loadProducts();
-  }, []);
 
   // Отслеживаем какая категория сейчас видна на экране
   useEffect(() => {
@@ -91,29 +63,6 @@ function MenuPage() {
     return () => observer.disconnect();
   }, [loading]);
 
-  // Функция загрузки товаров
-  async function loadProducts() {
-    try {
-      setLoading(true);
-      setError(null);
-      const data = await fetchProducts();
-      setProducts(data);
-      // Устанавливаем текущую категорию, если она задана в URL, иначе первую категорию с товарами
-      const firstCat = categories.find(c =>
-        data.filter(p => p.category === c.id).length > 0
-      );
-      if (queryCategory && categories.some(c => c.id === queryCategory)) {
-        setVisibleCategory(queryCategory);
-      } else if (firstCat) {
-        setVisibleCategory(firstCat.id);
-      }
-    } catch (err) {
-      setError(err.message);
-    } finally {
-      setLoading(false);
-    }
-  }
-
   // Прокрутка к категории
   function scrollToCategory(categoryId) {
     const section = categoryRefs.current[categoryId];
@@ -130,14 +79,19 @@ function MenuPage() {
     }
   }
 
+  // Устанавливаем начальную видимую категорию
   useEffect(() => {
-    if (!loading && queryCategory && categories.some(c => c.id === queryCategory)) {
-      const section = categoryRefs.current[queryCategory];
-      if (section) {
-        section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    if (!loading && products.length > 0) {
+      const firstCat = categories.find(c =>
+        products.filter(p => p.category === c.id).length > 0
+      );
+      if (queryCategory && categories.some(c => c.id === queryCategory)) {
+        setVisibleCategory(queryCategory);
+      } else if (firstCat) {
+        setVisibleCategory(firstCat.id);
       }
     }
-  }, [loading, queryCategory]);
+  }, [loading, products, queryCategory]);
 
   return (
     <main className={styles.menuPage}>
